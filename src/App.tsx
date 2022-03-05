@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Cases from 'components/Cases';
+import Graph from 'components/Graph';
+import Header from 'components/Header';
+import { Loader } from 'components/Loader';
+import Stats from 'components/Stats';
+import Timeframe from 'components/Timeframe';
+import { AppCtx } from 'context';
+import { useRequest } from 'hooks';
+import { Country } from 'models';
+import moment from 'moment';
+import React, { useContext, useEffect } from 'react';
+import { parseData, sortData } from 'utils';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App: React.FC = (): JSX.Element => {
+  const { setCountries } = useContext(AppCtx);
+  const currentDate: string = moment().subtract(1, 'days').format('M/D/YY');
+  const { data, isLoading }: { data: any; isLoading: boolean } = useRequest(
+    'https://disease.sh/v3/covid-19/historical?lastdays=all'
+  );
+
+  useEffect(() => {
+    if (data && !isLoading) {
+      const parsedData: Country[] = parseData(data);
+      const sortedData: Country[] = sortData(currentDate, 'cases', parsedData);
+      setCountries(sortedData);
+    }
+  }, [data, currentDate, isLoading, setCountries]);
+
+  return !isLoading ? (
+    <div className='flex flex-col h-screen text-white bg-zinc-800'>
+      <Header />
+      <div className='flex flex-col h-full min-h-0 xl:flex-row xl:m-8'>
+        <Cases />
+        <div className='flex flex-col xl:justify-between xl:w-full'>
+          <Stats />
+          <Graph />
+          <Timeframe />
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className='flex items-center justify-center h-screen bg-zinc-800'>
+      <Loader />
     </div>
   );
-}
+};
 
 export default App;

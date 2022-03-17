@@ -1,13 +1,14 @@
 import { AppCtx } from 'context';
+import { Country } from 'models';
 import React, { useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getDates, toAbsolute } from 'utils';
 
 const options = {
+  maintainAspectRatio: false,
   interaction: {
     intersect: false,
   },
-  responsive: true,
   color: 'white',
   plugins: {
     legend: {
@@ -40,10 +41,12 @@ const options = {
 
 const Graph: React.FC = (): JSX.Element => {
   const { countries, timeframe } = useContext(AppCtx);
-  const selectedCountries = countries.filter((country) => country.selected);
+  const selectedCountries: Country[] = countries.filter(
+    (country) => country.selected,
+  );
   const parsedData = selectedCountries.map((country) => ({
     data: toAbsolute(Object.values(country.daily.cases)).slice(
-      timeframe === 0 ? 0 : -Math.abs(timeframe)
+      timeframe === 0 ? 0 : -Math.abs(timeframe),
     ),
     label: country.name,
     borderColor: country.color,
@@ -53,7 +56,7 @@ const Graph: React.FC = (): JSX.Element => {
     borderWidth: 1,
   }));
   return (
-    <div className='self-center w-5/6 h-5/6 xl:mt-8'>
+    <div className="self-center w-[300px] h-[300px] sm:w-[600px] sm:h-[400px] lg:w-[900px] lg:h-[600px] 2xl:w-[1000px] relative">
       <Bar
         options={options}
         data={{

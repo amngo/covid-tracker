@@ -5,7 +5,7 @@ const Timeframe = () => {
   const { setTimeframe, timeframe } = useContext(AppCtx);
 
   return (
-    <div className='flex justify-center w-full'>
+    <div className="flex justify-center w-full mt-8 text-sm sm:text-md">
       <div
         className={`py-2 px-3 w-24 h-12 border-x border-zinc-800 text-center cursor-pointer ${
           timeframe === 0

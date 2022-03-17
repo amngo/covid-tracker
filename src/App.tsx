@@ -15,7 +15,7 @@ const App: React.FC = (): JSX.Element => {
   const { setCountries } = useContext(AppCtx);
   const currentDate: string = moment().subtract(1, 'days').format('M/D/YY');
   const { data, isLoading }: { data: any; isLoading: boolean } = useRequest(
-    'https://disease.sh/v3/covid-19/historical?lastdays=all'
+    'https://disease.sh/v3/covid-19/historical?lastdays=all',
   );
 
   useEffect(() => {
@@ -27,11 +27,11 @@ const App: React.FC = (): JSX.Element => {
   }, [data, currentDate, isLoading, setCountries]);
 
   return !isLoading ? (
-    <div className='flex flex-col h-screen text-white bg-zinc-800'>
+    <div className="flex flex-col h-screen">
       <Header />
-      <div className='flex flex-col h-full min-h-0 xl:flex-row xl:m-8'>
+      <div className="flex flex-col h-full min-h-0 m-8 xl:flex-row">
         <Cases />
-        <div className='flex flex-col xl:justify-between xl:w-full'>
+        <div className="flex flex-col xl:justify-between xl:w-full">
           <Stats />
           <Graph />
           <Timeframe />
@@ -39,7 +39,7 @@ const App: React.FC = (): JSX.Element => {
       </div>
     </div>
   ) : (
-    <div className='flex items-center justify-center h-screen bg-zinc-800'>
+    <div className="flex items-center justify-center h-screen bg-zinc-800">
       <Loader />
     </div>
   );

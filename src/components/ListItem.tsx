@@ -25,19 +25,19 @@ const ListItem: React.FC<Props> = ({
   return (
     <li
       className={`flex items-center p-4 justify-between cursor-pointer text-sm h-[50px] ${
-        selected ? 'bg-sky-700 hover:bg-sky-600' : 'hover:bg-zinc-700'
+        selected ? 'bg-primary' : 'hover:bg-base-300 bg-base-200'
       }`}
       onClick={() => {
         setCountries(selectCountry(id, countries));
       }}
     >
-      <div className='flex items-center'>
-        <div className='w-[25px] text-center'>{position}</div>
-        <img src={flag} alt={country} className='w-[32px] h-[20px] mx-4' />
-        <div className='flex flex-col'>
-          <div className=''>{country}</div>
+      <div className="flex items-center">
+        <div className="w-[25px] text-center">{position}</div>
+        <img src={flag} alt={country} className="w-[32px] h-[20px] mx-4" />
+        <div className="flex flex-col">
+          <div className="">{country}</div>
           {province ? (
-            <div className='text-xs capitalize'>({province})</div>
+            <div className="text-xs capitalize">({province})</div>
           ) : null}
         </div>
       </div>

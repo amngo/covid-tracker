@@ -9,10 +9,6 @@ html {
 }
 
 @layer base {
-  body {
-    @apply bg-zinc-800 text-zinc-300;
-  }
-
   ::-webkit-scrollbar {
     width: 10px;
   }

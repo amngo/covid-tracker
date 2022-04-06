@@ -1,4 +1,4 @@
-export const isoCountries: { [key: string]: string } = {
+export const ISO_COUNTRIES: { [key: string]: string } = {
   'Afghanistan': 'AF',
   'Aland Islands': 'AX',
   'Albania': 'AL',
@@ -249,3 +249,6 @@ export const isoCountries: { [key: string]: string } = {
   'Kosovo': 'XK',
   'West Bank and Gaza': 'PS',
 };
+
+export const API_ENDPOINT =
+  'https://disease.sh/v3/covid-19/historical?lastdays=all';

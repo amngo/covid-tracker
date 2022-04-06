@@ -56,7 +56,7 @@ const Graph: React.FC = (): JSX.Element => {
     borderWidth: 1,
   }));
   return (
-    <div className="self-center w-[300px] h-[300px] sm:w-[600px] sm:h-[400px] lg:w-[900px] lg:h-[600px] 2xl:w-[1000px] relative">
+    <div className="self-center w-[300px] h-[300px] sm:w-[600px] sm:h-[400px] lg:w-[900px] lg:h-[450px] 2xl:w-[1200px] 2xl:grow relative">
       <Bar
         options={options}
         data={{

@@ -1,6 +1,6 @@
-import { isoCountries } from 'data';
 import { Country } from 'models';
 import moment from 'moment';
+import { ISO_COUNTRIES } from '../constants';
 
 const sortBy = (date: string, type: string) => {
   return (a: any, b: any) =>
@@ -36,7 +36,7 @@ export const parseData = (data: any) => {
       }
 
       const deaths: [string, number][] = Object.entries(
-        country.timeline.deaths
+        country.timeline.deaths,
       );
       const calculatedDeaths = [];
       for (let i = 1; i < cases.length; i++) {
@@ -66,8 +66,8 @@ export const parseData = (data: any) => {
 };
 
 export const getFlag = (country: string) => {
-  if (isoCountries[country]) {
-    return `https://countryflagsapi.com/png/${isoCountries[country]}`;
+  if (ISO_COUNTRIES[country]) {
+    return `https://countryflagsapi.com/png/${ISO_COUNTRIES[country]}`;
   } else return undefined;
 };
 
@@ -95,13 +95,13 @@ export const getDates = (days: number): string[] => {
   if (days === 0) {
     days = moment(currentDate, 'M/D/YY').diff(
       moment('1/22/20', 'M/D/YY'),
-      'days'
+      'days',
     );
   }
 
   for (let i = 0; i < days; i++) {
     dates.push(
-      moment(currentDate, 'M/D/YY').subtract(i, 'days').format('M/D/YY')
+      moment(currentDate, 'M/D/YY').subtract(i, 'days').format('M/D/YY'),
     );
   }
 

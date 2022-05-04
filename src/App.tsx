@@ -1,27 +1,27 @@
-import Cases from 'components/Cases';
-import Graph from 'components/Graph';
-import Header from 'components/Header';
-import { Loader } from 'components/Loader';
-import Stats from 'components/Stats';
-import Timeframe from 'components/Timeframe';
-import { AppCtx } from 'context';
-import { useRequest } from 'hooks';
-import { Country } from 'models';
-import moment from 'moment';
-import React, { useContext, useEffect } from 'react';
-import { parseData, sortData } from 'utils';
-import { API_ENDPOINT } from './constants';
+import Cases from "components/Cases";
+import Graph from "components/Graph";
+import Header from "components/Header";
+import Loader from "components/Loader/Loader";
+import Stats from "components/Stats";
+import Timeframe from "components/Timeframe";
+import { AppCtx } from "context";
+import dayjs from "dayjs";
+import useRequest from "hooks";
+import { Country } from "models";
+import React, { useContext, useEffect } from "react";
+import { parseData, sortData } from "utils";
+import { API_ENDPOINT } from "./constants";
 
-const App: React.FC = (): JSX.Element => {
+function App() {
   const { setCountries } = useContext(AppCtx);
-  const currentDate: string = moment().subtract(1, 'days').format('M/D/YY');
+  const currentDate: string = dayjs().subtract(1, "days").format("M/D/YY");
   const { data, isLoading }: { data: any; isLoading: boolean } =
     useRequest(API_ENDPOINT);
 
   useEffect(() => {
     if (data && !isLoading) {
       const parsedData: Country[] = parseData(data);
-      const sortedData: Country[] = sortData(currentDate, 'cases', parsedData);
+      const sortedData: Country[] = sortData(currentDate, "cases", parsedData);
       setCountries(sortedData);
     }
   }, [data, currentDate, isLoading, setCountries]);
@@ -43,6 +43,6 @@ const App: React.FC = (): JSX.Element => {
       <Loader />
     </div>
   );
-};
+}
 
 export default App;

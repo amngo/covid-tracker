@@ -1,9 +1,8 @@
-import { useRequest } from 'hooks';
-import React from 'react';
+import useRequest from "hooks";
 
-const Stats: React.FC = (): JSX.Element => {
+function Stats() {
   const { data, isLoading }: { data: any; isLoading: boolean } = useRequest(
-    'https://disease.sh/v3/covid-19/all',
+    "https://disease.sh/v3/covid-19/all",
   );
 
   return !isLoading ? (
@@ -45,8 +44,8 @@ const Stats: React.FC = (): JSX.Element => {
       </div>
     </div>
   ) : (
-    <div></div>
+    <div />
   );
-};
+}
 
 export default Stats;

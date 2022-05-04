@@ -1,7 +1,6 @@
-import React from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub } from "react-icons/fa";
 
-const Header: React.FC = (): JSX.Element => {
+function Header() {
   return (
     <div className="flex items-center justify-between w-full px-4 py-2 bg-primary">
       <span className="text-xl">Covid Tracker</span>
@@ -12,6 +11,6 @@ const Header: React.FC = (): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default Header;

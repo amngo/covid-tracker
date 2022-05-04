@@ -1,54 +1,60 @@
-import { AppCtx } from 'context';
-import React, { useContext } from 'react';
+import { AppCtx } from "context";
+import React, { useContext } from "react";
 
-const Timeframe: React.FC = (): JSX.Element => {
+function Timeframe() {
   const { setTimeframe, timeframe } = useContext(AppCtx);
 
   return (
     <div className="flex justify-center btn-group">
       <button
+        type="button"
         className={`btn btn-sm sm:btn-md ${
-          timeframe === 0 ? 'btn-active' : ''
+          timeframe === 0 ? "btn-active" : ""
         }`}
         onClick={() => setTimeframe(0)}
       >
         All
       </button>
       <button
+        type="button"
         className={`btn btn-sm sm:btn-md ${
-          timeframe === 365 ? 'btn-active' : ''
+          timeframe === 365 ? "btn-active" : ""
         }`}
         onClick={() => setTimeframe(365)}
       >
         1 Y
       </button>
       <button
+        type="button"
         className={`btn btn-sm sm:btn-md ${
-          timeframe === 180 ? 'btn-active' : ''
+          timeframe === 180 ? "btn-active" : ""
         }`}
         onClick={() => setTimeframe(180)}
       >
         6 M
       </button>
       <button
+        type="button"
         className={`btn btn-sm sm:btn-md ${
-          timeframe === 90 ? 'btn-active' : ''
+          timeframe === 90 ? "btn-active" : ""
         }`}
         onClick={() => setTimeframe(90)}
       >
         3 M
       </button>
       <button
+        type="button"
         className={`btn btn-sm sm:btn-md ${
-          timeframe === 30 ? 'btn-active' : ''
+          timeframe === 30 ? "btn-active" : ""
         }`}
         onClick={() => setTimeframe(30)}
       >
         1 M
       </button>
       <button
+        type="button"
         className={`btn btn-sm sm:btn-md ${
-          timeframe === 7 ? 'btn-active' : ''
+          timeframe === 7 ? "btn-active" : ""
         }`}
         onClick={() => setTimeframe(7)}
       >
@@ -56,6 +62,6 @@ const Timeframe: React.FC = (): JSX.Element => {
       </button>
     </div>
   );
-};
+}
 
 export default Timeframe;

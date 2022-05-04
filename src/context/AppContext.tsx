@@ -1,5 +1,5 @@
-import { Country } from 'models';
-import React, { createContext, useState } from 'react';
+import { Country } from "models";
+import React, { createContext, useMemo, useState } from "react";
 
 interface AppContextInterface {
   countries: Country[];
@@ -19,23 +19,22 @@ export const AppCtx = createContext<AppContextInterface>({
   setTimeframe: () => {},
 });
 
-export const AppProvider = ({ children }: { children: JSX.Element }) => {
+export function AppProvider({ children }: { children: JSX.Element }) {
   const [countries, setCountries] = useState<Country[]>([]);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
   const [timeframe, setTimeframe] = useState<number>(30);
 
-  return (
-    <AppCtx.Provider
-      value={{
-        countries,
-        setCountries,
-        timeframe,
-        setTimeframe,
-        filteredCountries,
-        setFilteredCountries,
-      }}
-    >
-      {children}
-    </AppCtx.Provider>
+  const value = useMemo(
+    () => ({
+      countries,
+      setCountries,
+      timeframe,
+      setTimeframe,
+      filteredCountries,
+      setFilteredCountries,
+    }),
+    [countries, filteredCountries, timeframe],
   );
-};
+
+  return <AppCtx.Provider value={value}>{children}</AppCtx.Provider>;
+}

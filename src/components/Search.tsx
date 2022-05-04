@@ -1,10 +1,10 @@
-import { AppCtx } from 'context';
-import { Country } from 'models';
-import React, { useContext, useEffect, useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { AppCtx } from "context";
+import { Country } from "models";
+import React, { useContext, useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
-const Search: React.FC = (): JSX.Element => {
-  const [input, setInput] = useState<string>('');
+function Search() {
+  const [input, setInput] = useState<string>("");
   const { countries, setFilteredCountries } = useContext(AppCtx);
 
   useEffect(() => {
@@ -28,6 +28,6 @@ const Search: React.FC = (): JSX.Element => {
       />
     </div>
   );
-};
+}
 
 export default Search;

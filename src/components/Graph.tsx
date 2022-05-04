@@ -1,36 +1,36 @@
-import { AppCtx } from 'context';
-import { Country } from 'models';
-import React, { useContext } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { getDates, toAbsolute } from 'utils';
+import { AppCtx } from "context";
+import { Country } from "models";
+import React, { useContext } from "react";
+import { Bar } from "react-chartjs-2";
+import { getDates, toAbsolute } from "utils";
 
 const options = {
   maintainAspectRatio: false,
   interaction: {
     intersect: false,
   },
-  color: 'white',
+  color: "white",
   plugins: {
     legend: {
       display: true,
     },
     title: {
       display: true,
-      text: 'Daily Cases',
+      text: "Daily Cases",
     },
   },
   scales: {
     y: {
       ticks: {
-        color: '#71717a',
+        color: "#71717a",
       },
       grid: {
-        color: '#3f3f46',
+        color: "#3f3f46",
       },
     },
     x: {
       ticks: {
-        color: '#71717a',
+        color: "#71717a",
       },
       grid: {
         display: false,
@@ -39,7 +39,7 @@ const options = {
   },
 };
 
-const Graph: React.FC = (): JSX.Element => {
+function Graph() {
   const { countries, timeframe } = useContext(AppCtx);
   const selectedCountries: Country[] = countries.filter(
     (country) => country.selected,
@@ -66,6 +66,6 @@ const Graph: React.FC = (): JSX.Element => {
       />
     </div>
   );
-};
+}
 
 export default Graph;

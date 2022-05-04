@@ -8,12 +8,12 @@ import {
   PointElement,
   Title,
   Tooltip,
-} from 'chart.js';
-import { AppProvider } from 'context';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+} from "chart.js";
+import { AppProvider } from "context";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
 
 ChartJS.register(
   CategoryScale,
@@ -23,7 +23,7 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 ReactDOM.render(
@@ -32,5 +32,5 @@ ReactDOM.render(
       <App />
     </AppProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root"),
 );

@@ -1,3 +1,3 @@
-import { AppCtx, AppProvider } from './AppContext';
+import { AppCtx, AppProvider } from "./AppContext";
 
 export { AppCtx, AppProvider };

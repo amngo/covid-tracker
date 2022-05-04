@@ -1,6 +1,6 @@
-import { AppCtx } from 'context';
-import React, { useContext } from 'react';
-import { selectCountry } from 'utils';
+import { AppCtx } from "context";
+import React, { useContext } from "react";
+import { selectCountry } from "utils";
 
 interface Props {
   id: number;
@@ -12,7 +12,7 @@ interface Props {
   selected: boolean;
 }
 
-const ListItem: React.FC<Props> = ({
+function ListItem({
   id,
   country,
   province,
@@ -20,14 +20,19 @@ const ListItem: React.FC<Props> = ({
   position,
   value,
   selected,
-}): JSX.Element => {
+}: Props) {
   const { countries, setCountries } = useContext(AppCtx);
   return (
-    <li
+    <div
+      tabIndex={0}
+      role="button"
       className={`flex items-center p-4 justify-between cursor-pointer text-sm h-[50px] ${
-        selected ? 'bg-primary' : 'hover:bg-base-300 bg-base-200'
+        selected ? "bg-primary" : "hover:bg-base-300 bg-base-200"
       }`}
       onClick={() => {
+        setCountries(selectCountry(id, countries));
+      }}
+      onKeyPress={() => {
         setCountries(selectCountry(id, countries));
       }}
     >
@@ -43,8 +48,8 @@ const ListItem: React.FC<Props> = ({
       </div>
 
       <div>{value.toLocaleString()}</div>
-    </li>
+    </div>
   );
-};
+}
 
 export default ListItem;

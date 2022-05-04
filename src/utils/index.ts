@@ -101,7 +101,7 @@ export const getDates = (days: number): string[] => {
     );
   }
 
-  for (let i = 0; i < days; i += 1) {
+  for (let i = 0; i < currentDays; i += 1) {
     dates.push(
       dayjs(currentDate, "M/D/YY").subtract(i, "days").format("M/D/YY"),
     );

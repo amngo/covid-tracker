@@ -1,5 +1,4 @@
 import { AppCtx } from "context";
-import { Country } from "models";
 import React, { useContext } from "react";
 import { Bar } from "react-chartjs-2";
 import { getDates, toAbsolute } from "utils";
@@ -41,9 +40,7 @@ const options = {
 
 function Graph() {
   const { countries, timeframe } = useContext(AppCtx);
-  const selectedCountries: Country[] = countries.filter(
-    (country) => country.selected,
-  );
+  const selectedCountries = countries.filter((country) => country.selected);
   const parsedData = selectedCountries.map((country) => ({
     data: toAbsolute(Object.values(country.daily.cases)).slice(
       timeframe === 0 ? 0 : -Math.abs(timeframe),

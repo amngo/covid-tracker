@@ -7,21 +7,20 @@ import Timeframe from "components/Timeframe";
 import { AppCtx } from "context";
 import dayjs from "dayjs";
 import useRequest from "hooks";
-import { Country } from "models";
 import React, { useContext, useEffect } from "react";
 import { parseData, sortData } from "utils";
 import { API_ENDPOINT } from "./constants";
 
 function App() {
   const { setCountries } = useContext(AppCtx);
-  const currentDate: string = dayjs().subtract(1, "days").format("M/D/YY");
+  const currentDate = dayjs().subtract(1, "days").format("M/D/YY");
   const { data, isLoading }: { data: any; isLoading: boolean } =
     useRequest(API_ENDPOINT);
 
   useEffect(() => {
     if (data && !isLoading) {
-      const parsedData: Country[] = parseData(data);
-      const sortedData: Country[] = sortData(currentDate, "cases", parsedData);
+      const parsedData = parseData(data);
+      const sortedData = sortData(currentDate, "cases", parsedData);
       setCountries(sortedData);
     }
   }, [data, currentDate, isLoading, setCountries]);

@@ -6,7 +6,7 @@ import ListItem from "./ListItem";
 
 function List() {
   const { filteredCountries } = useContext(AppCtx);
-  const currentDate: string = dayjs().subtract(1, "days").format("M/D/YY");
+  const currentDate = dayjs().subtract(1, "days").format("M/D/YY");
 
   const formattedData = filteredCountries.map((country: Country) => (
     <ListItem
